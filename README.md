@@ -10,4 +10,4 @@ For example
 go run cmd/single/main.go biraishkembe-mdb-ms-0 biraishkembe 1000
 ```
 
-The result will be placed in folders in your target directory. Note, rerunning the program will delete everything in your target dir, and recreate it from scrach, so make sure to backup whatever you wish!
+The result will be placed in folders in your target directory. If you see ANY resulting files in the `target` dir, that means that there was an error, and the error will appear in the program's output. Note, rerunning the program will delete everything in your target dir, and recreate it from scrach, so make sure to backup whatever you wish!

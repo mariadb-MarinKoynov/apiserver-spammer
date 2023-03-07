@@ -91,21 +91,22 @@ func increaseUlimit() {
 	var rLimit syscall.Rlimit
 	err := syscall.Getrlimit(syscall.RLIMIT_NOFILE, &rLimit)
 	if err != nil {
-		fmt.Println("Error Getting Rlimit ", err)
+		log.Fatalf("Error Getting Rlimit %s", err)
 	}
-	fmt.Println(rLimit)
+	log.Print("Old session limit: ")
+	log.Println(rLimit)
 	rLimit.Max = 999999
 	rLimit.Cur = 999999
 	err = syscall.Setrlimit(syscall.RLIMIT_NOFILE, &rLimit)
 	if err != nil {
-		fmt.Println("Error Setting Rlimit ", err)
+		log.Fatalf("Error Setting Rlimit %s", err)
 	}
 	err = syscall.Getrlimit(syscall.RLIMIT_NOFILE, &rLimit)
 	if err != nil {
-		fmt.Println("Error Getting Rlimit ", err)
+		log.Fatalf("Error Getting Rlimit %s", err)
 	}
-	fmt.Println("Rlimit Final", rLimit)
-
+	log.Print("New session limit: ")
+	log.Println(rLimit)
 }
 
 func createDirectory(path string) {
@@ -113,7 +114,7 @@ func createDirectory(path string) {
 	if _, err := os.Stat(path); errors.Is(err, os.ErrNotExist) {
 		err := os.Mkdir(path, os.ModePerm)
 		if err != nil {
-			log.Println(err)
+			log.Fatalf("An error occured creating dir: %s", err)
 		}
 	}
 }
