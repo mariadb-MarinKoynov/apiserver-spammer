@@ -1,0 +1,15 @@
+.srl
+
+/package/
+
+.glide/
+.vscode/
+.idea/
+vendor/
+
+bin/
+debug/
+secrets/
+dev/
+
+target/
